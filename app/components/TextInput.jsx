@@ -59,8 +59,22 @@ export default function DynamicButtonz({ data }) {
   <input type="file" name="excelFile" id="excelFile" accept=".xlsx, .xls, .csv" onChange={handleFileChange} />
 
   <div>
+    <div>
+  {headers ? (
+        <>
+        <h4>Placeholders:</h4>
+          {Object.values(headers).map((value, index) => (
+            <button key={index} onMouseDown={(e) => handleButtonClick(value, e)}>
+              {value}
+            </button>
+          ))}
+        </>
+      ) : (
+        <div>No data available</div>
+      )}
+      </div>
     <textarea
-      name="text" // Ensure the textarea has a name attribute
+      name="text"
       value={text}
       onChange={handleTextChange}
       rows={5}
@@ -73,17 +87,7 @@ export default function DynamicButtonz({ data }) {
 
       </div>
 
-      {headers ? (
-        <>
-          {Object.values(headers).map((value, index) => (
-            <button key={index} onMouseDown={(e) => handleButtonClick(value, e)}>
-              {value}
-            </button>
-          ))}
-        </>
-      ) : (
-        <div>No data available</div>
-      )}
+     
     </div>
   );
 }
