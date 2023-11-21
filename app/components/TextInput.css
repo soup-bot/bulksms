@@ -173,3 +173,8 @@ textarea{
   box-shadow: rgba(0, 0, 0, .06) 0 2px 4px;
   transform: translateY(0);
 }
+.inserted-text {
+  background-color: yellow; /* Adjust the background color as desired */
+  color: black; /* Adjust the text color as desired */
+  /* Add any other styles you want for the inserted text */
+}

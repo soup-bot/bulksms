@@ -6,7 +6,7 @@ import styles from './TextInput.css';
 
 export default function DynamicButtonz({ data }) {
   const [text, setText] = useState('');
-  const [headers, setHeaders] = useState(null); 
+  const [headers, setHeaders] = useState(null); // Added state for headers
   const [uploadedFile, setUploadedFile] = useState(null);
 
   const handleTextChange = (e) => {
