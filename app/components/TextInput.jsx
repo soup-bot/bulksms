@@ -3,11 +3,14 @@ import { Form } from '@remix-run/react';
 import React, { useState } from 'react';
 import xlsx from 'xlsx';
 import styles from './TextInput.css';
+import { TagsInput } from "react-tag-input-component";
 
 export default function DynamicButtonz({ data }) {
+  const [inputType, setInputType] = useState('numbers'); 
   const [text, setText] = useState('');
   const [headers, setHeaders] = useState(null); // Added state for headers
   const [uploadedFile, setUploadedFile] = useState(null);
+  const [selected, setSelected] = useState([]);
 
   const handleTextChange = (e) => {
     setText(e.target.value);
@@ -53,14 +56,63 @@ export default function DynamicButtonz({ data }) {
     // Handle form submission logic, e.g., send data to the server
   };
 
+  const validatePhoneNumber = (phoneNumber) => {
+    // Check if the phone number has exactly 7 characters
+    // and starts with either 7 or 9
+    return /^[79]\d{6}$/.test(phoneNumber);
+  };
+  const beforeAddValidate = (tag, existingTags) => {
+    // Check if the length is less than 10 and the phone number is valid
+    return selected.length < 10 && validatePhoneNumber(tag);
+  };
+
+  const handleInputChange = (type) => {
+    setInputType(type);
+    setText('');
+    setHeaders(null);
+    setUploadedFile(null);
+    setSelected([]); 
+  };
+
   return (
     <div className='container'>
       <div className='wrapper'>
       <Form method="post" encType="multipart/form-data">
-  <label className='datasheet_label' htmlFor="excelFile">Data sheet:</label>
-  <div className="input_container">
-  <input type="file" name="excelFile" id="excelFile" accept=".xlsx, .xls, .csv" onChange={handleFileChange} />
-  </div>
+
+      <label>
+            Input Type:
+            <select value={inputType} onChange={(e) => handleInputChange(e.target.value)}>
+              <option value="numbers">Numbers</option>
+              <option value="file">File</option>
+            </select>
+          </label>
+
+
+          {inputType === 'numbers' ? (
+            <div className="tags-container">
+            <TagsInput
+              value={selected}
+              onChange={setSelected}
+              name="numbers"
+              placeHolder="Type phone numbers to message (up to 10)"
+              beforeAddValidate={beforeAddValidate}
+              onlyUnique={true}
+            />
+            </div>
+          ) : (
+            <div className='fileup-container'>
+              <input
+                type="file"
+                name="excelFile"
+                id="excelFile"
+                accept=".xlsx, .xls, .csv"
+                onChange={handleFileChange}
+              />
+              {/* Display file-related UI here */}
+            </div>
+          )}
+
+  
   <div>
     <div>
   {headers ? (

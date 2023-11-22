@@ -179,3 +179,36 @@ textarea{
   color: black; /* Adjust the text color as desired */
   /* Add any other styles you want for the inserted text */
 }
+
+.rti--container {
+  --rti-bg: "#fff",
+  --rti-border: "#ccc",
+  --rti-main: "#3182ce",
+  --rti-radius: "0.375rem",
+  --rti-s: "0.5rem", /* spacing */
+  --rti-tag: "#edf2f7",
+  --rti-tag-remove: "#e53e3e",
+}
+.tags-container{
+  width: 50%;
+  margin: 20px;
+}
+.fileup-container{
+  margin: 30px;
+}
+
+@media only screen and (max-width: 768px) {
+  .tags-container{
+   width: 100%;
+  }
+  .main-container{
+    width: 100%;
+    display: flex;
+  }
+  textarea{
+    justify-self: center;
+  }
+  .text-area-container{
+    max-width: 100%;
+  }
+  }
