@@ -54,7 +54,7 @@ export default function DynamicButtonz({ data }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle form submission logic, e.g., send data to the server
+
   };
 
   const validatePhoneNumber = (phoneNumber) => {
@@ -80,6 +80,7 @@ export default function DynamicButtonz({ data }) {
   return (
     <div className='container'>
       <div className='wrapper'>
+
 
 <div className="switcher">
 <button className='switch-btn' disabled={inputType==='numbers'} onClick={() => handleInputChange('numbers')}>Input up to 10 numbers</button>
