@@ -4,23 +4,45 @@ import React, { useState } from 'react';
 import xlsx from 'xlsx';
 import styles from './TextInput.css';
 import { TagsInput } from "react-tag-input-component";
-import excelLogo from '../assets/file-excel-solid.svg';
+
+
+import Stack from '@mui/material/Stack';
+import Button from '@mui/material/Button';
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert from '@mui/material/Alert';
+
+const Alert = React.forwardRef(function Alert(props, ref) {
+  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
 
 export default function DynamicButtonz({ data }) {
   const [inputType, setInputType] = useState('numbers'); 
+  const [snackbarText, setSnackbarText] = useState(''); 
   const [text, setText] = useState('');
   const [headers, setHeaders] = useState(null); 
   const [uploadedFile, setUploadedFile] = useState(null);
   const [selected, setSelected] = useState([]);
+  const [open, setOpen] = React.useState(false);
+
+
+ 
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpen(false);
+  };
 
   const handleTextChange = (e) => {
     setText(e.target.value);
+  
   };
-
+ 
   const handleFileChange = async (e) => {
     setHeaders(null);
     const file = e.target.files[0];
-
+    setUploadedFile(file);
     if (!file) {
       return;
     }
@@ -50,6 +72,7 @@ export default function DynamicButtonz({ data }) {
   const handleButtonClick = (value, event) => {
     event.preventDefault();
     setText((prevText) => `${prevText} @@${value} `);
+    
   };
 
   const handleSubmit = async (e) => {
@@ -62,9 +85,26 @@ export default function DynamicButtonz({ data }) {
     // and starts with either 7 or 9
     return /^[79]\d{6}$/.test(phoneNumber);
   };
+  // const beforeAddValidate = (tag, existingTags) => {
+  //   // Check if the length is less than 10 and the phone number is valid
+  //   return selected.length < 10 && validatePhoneNumber(tag);
+  // };
+
   const beforeAddValidate = (tag, existingTags) => {
     // Check if the length is less than 10 and the phone number is valid
-    return selected.length < 10 && validatePhoneNumber(tag);
+    const isValidPhoneNumber = selected.length < 10 && validatePhoneNumber(tag);
+  
+    // Set the error message for Snackbar
+    if (isValidPhoneNumber)
+    {
+      return isValidPhoneNumber;
+    }
+    else{
+      setSnackbarText('Invalid phone number. Please enter a valid 7-digit number starting with 7 or 9.')
+      setOpen(true);
+    }
+    
+    
   };
 
   const handleInputChange = (type) => {
@@ -151,15 +191,22 @@ export default function DynamicButtonz({ data }) {
     <p>{text.length} characters used</p>
    
   
-  <button className='button-5' type="submit">Submit</button>
+  <button disabled={!((text && selected.length>0)||(text && uploadedFile))} className='button-5' type="submit">Submit</button>
   </div>
   </div>
   </div>
+  
 </Form>
 
       </div>
+    
+      <Snackbar open={open} autoHideDuration={3000} onClose={handleClose} anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}>
+        <Alert onClose={handleClose} severity="error" sx={{ width: '100%' }}>
+          {snackbarText}
+        </Alert>
+      </Snackbar>
+    
 
-     
     </div>
   );
 }

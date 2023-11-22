@@ -173,6 +173,17 @@ textarea{
   transform: translateY(-1px);
 }
 
+.button-5:disabled{
+  background-color: grey;
+
+}
+.button-5:disabled:hover{
+  transform: translateY(0px);
+  cursor: default;
+  
+  
+}
+
 .button-5:active {
   background-color: #c85000;
   box-shadow: rgba(0, 0, 0, .06) 0 2px 4px;

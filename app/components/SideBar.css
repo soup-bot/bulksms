@@ -38,6 +38,7 @@ body{
   background-color: rgb(88, 194,218);
   color: white;
 }
+
 .active{
   color: rgb(88, 194,218);
   font-weight: bold;
