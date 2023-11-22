@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import xlsx from 'xlsx';
 import styles from './TextInput.css';
 import { TagsInput } from "react-tag-input-component";
+import { Button } from '@mui/material';
 
 export default function DynamicButtonz({ data }) {
   const [inputType, setInputType] = useState('numbers'); 
@@ -79,25 +80,28 @@ export default function DynamicButtonz({ data }) {
       <div className='wrapper'>
       <Form method="post" encType="multipart/form-data">
 
-      <label>
-            Input Type:
+     <div className="custom-select">
             <select value={inputType} onChange={(e) => handleInputChange(e.target.value)}>
               <option value="numbers">Numbers</option>
               <option value="file">File</option>
             </select>
-          </label>
-
+            </div>
 
           {inputType === 'numbers' ? (
             <div className="tags-container">
             <TagsInput
               value={selected}
               onChange={setSelected}
-              name="numbers"
               placeHolder="Type phone numbers to message (up to 10)"
               beforeAddValidate={beforeAddValidate}
               onlyUnique={true}
             />
+             {/* Hidden input to mirror the values of the TagsInput */}
+          <input
+            type="hidden"
+            name="numbers"
+            value={selected}
+          />
             </div>
           ) : (
             <div className='fileup-container'>
