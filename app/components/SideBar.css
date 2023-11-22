@@ -8,6 +8,7 @@ body{
   height: 100vh;
   display: flex;
   justify-content: center;
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.161);
 }
 .sidebar-a{
   text-decoration: none;
@@ -35,4 +36,9 @@ body{
   background-color: rgb(221, 221, 221);
   background-color: rgb(88, 194,218);
   color: white;
+}
+.active{
+  color: rgb(88, 194,218);
+  font-weight: bold;
+  font-size: 20px;
 }
