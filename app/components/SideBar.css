@@ -1,5 +1,36 @@
 body{
-  background-color: rgb(255, 255, 255);
+  background-color: rgb(245, 243, 243);
   width: 100vw;
   height: 100vh;
+}
+.sidebar{
+  background-color: rgb(255, 255, 255);
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+}
+.sidebar-a{
+  text-decoration: none;
+  cursor: pointer;
+  color: black;
+  margin: 10px;
+  font-size: 18px;
+  width: 100%;
+}
+.sidebar-li{
+  padding: 20px;
+  list-style: none;
+  transition: all 0.2s;
+
+}
+.sidebar-ul{
+  margin-top: 15px;
+}
+.compose{
+  color: rgb(9, 67, 128);
+  font-weight: bold;
+  text-decoration: none;
+}
+.sidebar-li:hover{
+  background-color: rgb(196, 196, 196);
 }

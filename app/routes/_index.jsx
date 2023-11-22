@@ -31,7 +31,6 @@ export default function Index() {
   return (
     <div className="body">
 <div>
-  <SideBar></SideBar>
   <TextInput data = {data}></TextInput>
    
 </div>

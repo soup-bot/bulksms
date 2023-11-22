@@ -1,6 +1,7 @@
 import { cssBundleHref } from "@remix-run/css-bundle";
 import type { LinksFunction } from "@remix-run/node";
 import NavBar from "~/components/NavBar";
+import SideBar, { links as SideBarLinks } from '~/components/SideBar';
 
 import {
   Links,
@@ -28,7 +29,10 @@ export default function App() {
         <header>
         <NavBar></NavBar>
         </header>
-        <Outlet />
+        <main className="main-container">
+        <SideBar></SideBar>
+        <Outlet/>
+        </main>
         <ScrollRestoration />
         <Scripts />
         <LiveReload />
