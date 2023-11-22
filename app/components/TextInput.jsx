@@ -45,7 +45,7 @@ export default function DynamicButtonz({ data }) {
 
   const handleButtonClick = (value, event) => {
     event.preventDefault();
-    setText((prevText) => `${prevText} @${value} `);
+    setText((prevText) => `${prevText} @@${value} `);
   };
 
   const handleSubmit = async (e) => {
