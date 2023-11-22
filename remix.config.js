@@ -5,4 +5,11 @@ export default {
   // assetsBuildDirectory: "public/build",
   // publicPath: "/build/",
   // serverBuildPath: "build/index.js",
+  serverDependenciesToBundle: [
+    /^react-icons/,
+    /^@mui\/*/,
+    /^@emotion\/react/,
+    /^@emotion\/styled/,
+    /^@prisma\/client\/runtime\/library/,
+  ],
 };
