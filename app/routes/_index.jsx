@@ -15,9 +15,9 @@ export function meta() {
     {description: 'Bulk SMS'},
   ];
 }
-export function links() {
-  return [...NavBarLinks(),...TextInputLinks(),...SideBarLinks()];
-}
+// export function links() {
+//   return [...NavBarLinks(),...TextInputLinks(),...SideBarLinks()];
+// }
 
 export default function Index() {
   const data = useActionData();

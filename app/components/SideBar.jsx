@@ -5,12 +5,11 @@ export default function SideBar(){
   return(
     <div className="sidebar">
       <ul className='sidebar-ul'>
-        <li className='sidebar-li'><a className='sidebar-a compose' href="#">Compose Message</a></li>
-        {/* <Link to="/inbox">Inbox</Link> */}
-        <li className='sidebar-li'><a className='sidebar-a' href="/inbox">Inbox</a></li>
-        <li className='sidebar-li'><a className='sidebar-a' href="#">Sent Items</a></li>
-        <li className='sidebar-li'><a  className='sidebar-a' href="#">Contacts</a></li>
-        <li className='sidebar-li'><a className='sidebar-a' href="#">Reports</a></li>
+       <Link to='/' className='sidebar-a compose'><li className='sidebar-li'>Compose Message</li></Link>
+       <Link to='/inbox' className='sidebar-a'><li className='sidebar-li'>Inbox</li></Link>
+       <Link to='/sentitems' className='sidebar-a'><li className='sidebar-li'>Sent Items</li></Link>
+       <Link to='/contacts' className='sidebar-a'><li className='sidebar-li'>Contacts</li></Link>
+       <Link to='/reports' className='sidebar-a'><li className='sidebar-li'>Reports</li></Link>
       </ul>
     </div>
   )

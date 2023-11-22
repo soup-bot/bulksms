@@ -1,4 +1,5 @@
 export default function Inbox(){
-return(<>
-</>)
+return(
+    <h4>Inbox page</h4>
+)
 }

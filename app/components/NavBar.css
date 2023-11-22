@@ -10,11 +10,15 @@ body{
 nav{
   padding: 30px 20px;
   font-size: 30px;
+  background-color: rgb(224, 96, 56);
   box-shadow: 2px 3px 9px rgba(124, 124, 124, 0.37);
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+}
+h4{
+  color: rgb(255, 255, 255);
 }
 
 .main-container{
@@ -24,5 +28,23 @@ nav{
 }
 .nav-li{
   display: flex;
+  list-style: none;
+}
+.nav-icons{
+  width: 25px;
+  color: white;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.nav-icons:hover{
+  filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(298deg) brightness(102%) contrast(102%);
+  scale: 1.1;
+}
+
+.question{
+  width: 20px;
+}
+.nav-li li{
+margin: 5px 19px;
 }
 

@@ -18,7 +18,7 @@ body{
   width: 100%;
 }
 .sidebar-li{
-  padding: 20px;
+  padding: 20px 50px;
   list-style: none;
   transition: all 0.2s;
 
@@ -26,11 +26,13 @@ body{
 .sidebar-ul{
   margin-top: 15px;
 }
-.compose{
+/* .compose{
   color: rgb(9, 67, 128);
   font-weight: bold;
   text-decoration: none;
-}
+} */
 .sidebar-li:hover{
-  background-color: rgb(196, 196, 196);
+  background-color: rgb(221, 221, 221);
+  background-color: rgb(88, 194,218);
+  color: white;
 }

@@ -2,6 +2,10 @@ import { cssBundleHref } from "@remix-run/css-bundle";
 import type { LinksFunction } from "@remix-run/node";
 import NavBar from "~/components/NavBar";
 import SideBar, { links as SideBarLinks } from '~/components/SideBar';
+import { links as NavBarLinks } from '~/components/NavBar';
+import { links as TextInputLinks } from '~/components/TextInput';
+
+
 
 import {
   Links,
@@ -15,6 +19,9 @@ import {
 // export const links: LinksFunction = () => [
 //   ...(styles ? [{ rel: "stylesheet", href: styles }] : []),
 // ];
+export function links() {
+  return [...NavBarLinks(),...TextInputLinks(),...SideBarLinks()];
+}
 
 export default function App() {
   return (
