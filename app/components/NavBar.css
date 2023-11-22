@@ -8,9 +8,10 @@ body{
   flex-direction: column;
 }
 nav{
-  padding: 30px 20px;
+  padding: 20px 20px;
   font-size: 30px;
-  background-color: rgb(210, 86, 45);
+  /* background-color: rgb(210, 86, 45); */
+  background-color: white;
   box-shadow: 2px 3px 9px rgba(124, 124, 124, 0.37);
   display: flex;
   flex-direction: row;
@@ -19,6 +20,10 @@ nav{
 }
 h4{
   color: rgb(255, 255, 255);
+}
+.logo{
+  width: 200px;
+
 }
 
 .main-container{
@@ -35,10 +40,9 @@ h4{
   color: white;
   cursor: pointer;
   transition: all 0.2s;
-  filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(298deg) brightness(102%) contrast(102%);
 }
 .nav-icons:hover{
-  filter: none;
+  filter: invert(43%) sepia(18%) saturate(3207%) hue-rotate(337deg) brightness(91%) contrast(91%);
   scale: 1.1;
 }
 

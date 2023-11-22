@@ -4,12 +4,12 @@ import React, { useState } from 'react';
 import xlsx from 'xlsx';
 import styles from './TextInput.css';
 import { TagsInput } from "react-tag-input-component";
-import { Button } from '@mui/material';
+import excelLogo from '../assets/file-excel-solid.svg';
 
 export default function DynamicButtonz({ data }) {
   const [inputType, setInputType] = useState('numbers'); 
   const [text, setText] = useState('');
-  const [headers, setHeaders] = useState(null); // Added state for headers
+  const [headers, setHeaders] = useState(null); 
   const [uploadedFile, setUploadedFile] = useState(null);
   const [selected, setSelected] = useState([]);
 
@@ -75,18 +75,20 @@ export default function DynamicButtonz({ data }) {
     setSelected([]); 
   };
 
+
+
   return (
     <div className='container'>
       <div className='wrapper'>
+
+<div className="switcher">
+<button className='switch-btn' disabled={inputType==='numbers'} onClick={() => handleInputChange('numbers')}>Input up to 10 numbers</button>
+<h4 className='switch-txt'>or</h4>
+<button className='switch-btn' disabled={inputType==='file'} onClick={() => handleInputChange('file')}>Add recipients from a file</button>
+</div>
+
+
       <Form method="post" encType="multipart/form-data">
-
-     <div className="custom-select">
-            <select value={inputType} onChange={(e) => handleInputChange(e.target.value)}>
-              <option value="numbers">Numbers</option>
-              <option value="file">File</option>
-            </select>
-            </div>
-
           {inputType === 'numbers' ? (
             <div className="tags-container">
             <TagsInput
@@ -164,3 +166,4 @@ export default function DynamicButtonz({ data }) {
 export function links() {
   return [{ rel: 'stylesheet', href: styles }];
 }
+
