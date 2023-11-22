@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import xlsx from 'xlsx';
 import styles from './TextInput.css';
 import { TagsInput } from "react-tag-input-component";
-
+import Tooltip from '@mui/material/Tooltip';
 
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
@@ -125,7 +125,9 @@ export default function DynamicButtonz({ data }) {
 <div className="switcher">
 <button className='switch-btn' disabled={inputType==='numbers'} onClick={() => handleInputChange('numbers')}>Input up to 10 numbers</button>
 <h4 className='switch-txt'>or</h4>
+<Tooltip title="Upload an .xlsx, .xls, or .csv file" disableInteractive>
 <button className='switch-btn' disabled={inputType==='file'} onClick={() => handleInputChange('file')}>Add recipients from a file</button>
+</Tooltip>
 </div>
 
 
