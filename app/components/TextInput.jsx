@@ -25,7 +25,7 @@ export default function DynamicButtonz({ data }) {
   const [open, setOpen] = React.useState(false);
 
 
- 
+ //Snackbar closing handling
   const handleClose = (event, reason) => {
     if (reason === 'clickaway') {
       return;
@@ -34,11 +34,15 @@ export default function DynamicButtonz({ data }) {
     setOpen(false);
   };
 
+
+  //Textarea input handling
   const handleTextChange = (e) => {
     setText(e.target.value);
   
   };
  
+
+  //Excel file input handling/processing (extract headers from file and place into object)
   const handleFileChange = async (e) => {
     setHeaders(null);
     const file = e.target.files[0];
@@ -69,6 +73,7 @@ export default function DynamicButtonz({ data }) {
     }
   };
 
+  //When clicking placeholder, insert with @@
   const handleButtonClick = (value, event) => {
     event.preventDefault();
     setText((prevText) => `${prevText} @@${value} `);
@@ -80,15 +85,13 @@ export default function DynamicButtonz({ data }) {
 
   };
 
+
+  //PHONE NUMBER VALIDATION
   const validatePhoneNumber = (phoneNumber) => {
     // Check if the phone number has exactly 7 characters
     // and starts with either 7 or 9
     return /^[79]\d{6}$/.test(phoneNumber);
   };
-  // const beforeAddValidate = (tag, existingTags) => {
-  //   // Check if the length is less than 10 and the phone number is valid
-  //   return selected.length < 10 && validatePhoneNumber(tag);
-  // };
 
   const beforeAddValidate = (tag, existingTags) => {
     // Check if the length is less than 10 and the phone number is valid
@@ -102,11 +105,11 @@ export default function DynamicButtonz({ data }) {
     else{
       setSnackbarText('Invalid phone number. Please enter a valid 7-digit number starting with 7 or 9.')
       setOpen(true);
-    }
-    
-    
+    } 
   };
+// --------------------------------------
 
+//If user switches from file input to number or vice versa, reset the inputs
   const handleInputChange = (type) => {
     setInputType(type);
     setText('');
@@ -117,11 +120,13 @@ export default function DynamicButtonz({ data }) {
 
 
 
+
+  //RETURN-----------------------------
   return (
     <div className='container'>
       <div className='wrapper'>
 
-
+{/* Switching input type between numbers and excel file */}
 <div className="switcher">
 <button className='switch-btn' disabled={inputType==='numbers'} onClick={() => handleInputChange('numbers')}>Input up to 10 numbers</button>
 <h4 className='switch-txt'>or</h4>
@@ -164,18 +169,18 @@ export default function DynamicButtonz({ data }) {
   
   <div>
     <div>
+      {/* IF HEADERS PRESENT, THEN MAP -> BUTTONS AND DISPLAY */}
   {headers ? (
         <>
-  
         <h4 className='placeholder'>Placeholders:</h4>
           {Object.values(headers).map((value, index) => (
             <button className='button-4' key={index} type="button" onMouseDown={(e) => handleButtonClick(value, e)}>
               {value}
             </button>
           ))}
-    
         </>
       ) : (
+        // ELSE SHOW THAT NO DATA IS AVAILABLE
         <div>No data available</div>
       )}
       </div>
@@ -192,7 +197,7 @@ export default function DynamicButtonz({ data }) {
     <div className="btn-container">
     <p>{text.length} characters used</p>
    
-  
+  {/* only enable form submission button if both inputs (file+text or numbers+text is available) */}
   <button disabled={!((text && selected.length>0)||(text && uploadedFile))} className='button-5' type="submit">Submit</button>
   </div>
   </div>
@@ -200,15 +205,13 @@ export default function DynamicButtonz({ data }) {
   
 </Form>
 
+{/* SNACKBAR FOR ERROR DISPLAY */}
       </div>
-    
       <Snackbar open={open} autoHideDuration={3000} onClose={handleClose} anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}>
         <Alert onClose={handleClose} severity="error" sx={{ width: '100%' }}>
           {snackbarText}
         </Alert>
       </Snackbar>
-    
-
     </div>
   );
 }
