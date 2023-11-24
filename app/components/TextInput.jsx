@@ -18,11 +18,32 @@ const Alert = React.forwardRef(function Alert(props, ref) {
 export default function DynamicButtonz({ data }) {
   const [inputType, setInputType] = useState('numbers'); 
   const [snackbarText, setSnackbarText] = useState(''); 
+  const [numMessages, setNumMessages] = useState(0);
   const [text, setText] = useState('');
   const [headers, setHeaders] = useState(null); 
   const [uploadedFile, setUploadedFile] = useState(null);
   const [selected, setSelected] = useState([]);
   const [open, setOpen] = React.useState(false);
+
+// Function to calculate the number of messages based on GSM-7 or UCS-2 encoding
+
+const calculateMessages = (text) => {
+  const gsm7Chars = new Set(' @£$¥èéùìòÇØøÅåΔ_ΦΓΛΩΠΨΣΘΞÆæßÉ !"#¤%&\'()*+,-./0123456789:;<=>?ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz');
+  const ucs2Chars = new Set(text);
+
+  const isGsm7 = [...ucs2Chars].every(char => gsm7Chars.has(char));
+  const charCount = text.length;
+
+  if (isGsm7) {
+    // Calculate messages for GSM-7
+    setNumMessages(Math.ceil((charCount * 1.0) / (160 - 7)));
+  } else {
+    // Calculate messages for UCS-2
+    setNumMessages(Math.ceil((charCount * 1.0) / (70-3)));
+  }
+};
+
+
 
 
  //Snackbar closing handling
@@ -38,7 +59,7 @@ export default function DynamicButtonz({ data }) {
   //Textarea input handling
   const handleTextChange = (e) => {
     setText(e.target.value);
-  
+  calculateMessages(e.target.value);
   };
  
 
@@ -191,14 +212,15 @@ export default function DynamicButtonz({ data }) {
       value={text}
       onChange={handleTextChange}
       rows={5}
-      className="full_height_Width"
+      className={`full_height_Width ${numMessages > 10 ? 'error' : ''}`}
     />
     
     <div className="btn-container">
     <p>{text.length} characters used</p>
+    <p className={`${numMessages > 10 ? 'errortxt' : ''}`}>{numMessages}/10 messages</p>
    
   {/* only enable form submission button if both inputs (file+text or numbers+text is available) */}
-  <button disabled={!((text && selected.length>0)||(text && uploadedFile))} className='button-5' type="submit">Submit</button>
+  <button disabled={!((text && selected.length>0)||(text && uploadedFile))||(numMessages>10)} className='button-5' type="submit">Submit</button>
   </div>
   </div>
   </div>

@@ -278,6 +278,16 @@ select {
   background-color:rgb(88, 194,218);
 }
 
+.error {
+  box-shadow: inset 0 0 3px red;
+}
+.errortxt{
+  color: red;
+}
+p{
+  font-weight: bold;
+}
+
 @media only screen and (max-width: 768px) {
   .tags-container{
    width: 100%;
@@ -292,5 +302,10 @@ select {
   }
   .text-area-container{
     max-width: 100%;
+  }
+  .btn-container{
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
   }
   }
