@@ -57,4 +57,10 @@ margin: 5px 19px;
   .main-container{
     width: 100%;
   }
+  nav{
+    flex-direction: column;
+  }
+  .nav-icons{
+    padding: 20px;
+  }
   }
