@@ -36,11 +36,20 @@ const calculateMessages = (text) => {
 
   if (isGsm7) {
     // Calculate messages for GSM-7
-    setNumMessages(Math.ceil((charCount * 1.0) / (160 - 7)));
+    if (charCount <= 160) {
+      setNumMessages(1);
+    } else {ސ
+      setNumMessages(Math.ceil((charCount) / (160 - 7)));
+    }
   } else {
+    if (charCount <= 70) {
+      setNumMessages(1);
+    } else {
     // Calculate messages for UCS-2
-    setNumMessages(Math.ceil((charCount * 1.0) / (70-3)));
+    setNumMessages(Math.ceil((charCount) / (70 - 3)));
   }
+}
+  
 };
 
 
