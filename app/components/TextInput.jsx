@@ -38,7 +38,7 @@ const calculateMessages = (text) => {
     // Calculate messages for GSM-7
     if (charCount <= 160) {
       setNumMessages(1);
-    } else {ސ
+    } else {
       setNumMessages(Math.ceil((charCount) / (160 - 7)));
     }
   } else {
@@ -106,7 +106,9 @@ const calculateMessages = (text) => {
   //When clicking placeholder, insert with @@
   const handleButtonClick = (value, event) => {
     event.preventDefault();
-    setText((prevText) => `${prevText} @@${value} `);
+  setText((prevText) => `${prevText} @@${value} `);
+    // calculateMessages(text)
+    calculateMessages(text+' @@'+value)
     
   };
 
@@ -146,6 +148,8 @@ const calculateMessages = (text) => {
     setHeaders(null);
     setUploadedFile(null);
     setSelected([]); 
+    setNumMessages(0);
+
   };
 
 
@@ -161,7 +165,7 @@ const calculateMessages = (text) => {
 <button className='switch-btn' disabled={inputType==='numbers'} onClick={() => handleInputChange('numbers')}>Input up to 10 numbers</button>
 <h4 className='switch-txt'>or</h4>
 <Tooltip title="Upload an .xlsx, .xls, or .csv file" disableInteractive>
-<button className='switch-btn' disabled={inputType==='file'} onClick={() => handleInputChange('file')}>Add recipients from a file</button>
+<span><button className='switch-btn' disabled={inputType==='file'} onClick={() => handleInputChange('file')}>Add recipients from a file</button></span>
 </Tooltip>
 </div>
 
@@ -220,6 +224,7 @@ const calculateMessages = (text) => {
       name="text"
       value={text}
       onChange={handleTextChange}
+      maxLength="1531"
       rows={5}
       className={`full_height_Width ${numMessages > 10 ? 'error' : ''}`}
     />
