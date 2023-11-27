@@ -1,8 +1,15 @@
-function Auth() {
+import AuthForm from "../components/AuthForm";
+import authStyles from "../components/Auth.css";
 
-    return ( <>
-    <h1>auth</h1>
-    </> );
+function Auth() {
+  return (
+    <>
+      <AuthForm />
+    </>
+  );
 }
 
 export default Auth;
+export function links() {
+  return [{ rel: "stylesheet", href: authStyles }];
+}

@@ -1,5 +1,3 @@
-export default function Inbox(){
-return(
-    <h4>Inbox page</h4>
-)
+export default function Inbox() {
+  return <h4>Inbox page</h4>;
 }
