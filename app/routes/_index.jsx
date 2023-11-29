@@ -9,9 +9,6 @@ import SideBar, { links as SideBarLinks } from "~/components/SideBar";
 export function meta() {
   return [{ title: "Dhiraagu Bulk SMS" }, { description: "Bulk SMS" }];
 }
-// export function links() {
-//   return [...NavBarLinks(),...TextInputLinks(),...SideBarLinks()];
-// }
 
 export default function Index() {
   const data = useActionData();

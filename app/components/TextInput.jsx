@@ -24,6 +24,7 @@ export default function DynamicButtonz({ data }) {
   const [uploadedFile, setUploadedFile] = useState(null);
   const [selected, setSelected] = useState([]);
   const [open, setOpen] = React.useState(false);
+  const [sopen, setSopen] = React.useState(false);
 
   // Function to calculate the number of messages based on GSM-7 or UCS-2 encoding
 
@@ -60,6 +61,7 @@ export default function DynamicButtonz({ data }) {
     }
 
     setOpen(false);
+    setSopen(false);
   };
 
   //Textarea input handling
@@ -110,7 +112,9 @@ export default function DynamicButtonz({ data }) {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    setText("");
+    setNumMessages(0);
+    setSopen(true);
   };
 
   //PHONE NUMBER VALIDATION
@@ -134,6 +138,7 @@ export default function DynamicButtonz({ data }) {
       setOpen(true);
     }
   };
+
   // --------------------------------------
 
   //If user switches from file input to number or vice versa, reset the inputs
@@ -176,7 +181,11 @@ export default function DynamicButtonz({ data }) {
           </Tooltip>
         </div>
 
-        <Form method="post" encType="multipart/form-data">
+        <Form
+          method="post"
+          encType="multipart/form-data"
+          onSubmit={handleSubmit}
+        >
           {inputType === "numbers" ? (
             <div className="tags-container">
               <TagsInput
@@ -271,6 +280,16 @@ export default function DynamicButtonz({ data }) {
       >
         <Alert onClose={handleClose} severity="error" sx={{ width: "100%" }}>
           {snackbarText}
+        </Alert>
+      </Snackbar>
+      <Snackbar
+        open={sopen}
+        autoHideDuration={3000}
+        onClose={handleClose}
+        anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+      >
+        <Alert onClose={handleClose} severity="success" sx={{ width: "100%" }}>
+          Text submitted!
         </Alert>
       </Snackbar>
     </div>
